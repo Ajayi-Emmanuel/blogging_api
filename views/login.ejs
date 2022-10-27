@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+
+    <style>
+        body{
+            padding: 0;
+            margin: 0;
+        }
+        .container{
+            max-width: 100%;
+            width: 1200px;
+            margin: 0 auto;
+        }
+        .card{
+            width: 50%;
+            margin: 100px auto;
+            padding: 10px 40px;
+        }
+        h1{
+            text-align: center;
+            color: steelblue;
+        }
+        .label-group{
+            width: 100%;
+            margin: 20px auto;
+        }
+
+        input{
+            padding: 10px;
+            border-radius: 5px;
+            width: 95.5%;
+        }
+        input:focus{
+            outline: none;
+        }
+        input::placeholder{
+            color: lightgrey;
+            font-family: cursive;
+            text-align: center;
+            font-size: 15px;
+        }
+        button{
+            width: 100%;
+            border-radius: 5px;
+            padding: 7px;
+            background-color: steelblue;
+            color: white;
+            font-family: cursive;
+            font-size: 16px;
+            border: none;
+            transition: .5s;
+            
+        }
+        button:hover{
+            cursor: pointer;
+            background-color: rgb(57, 113, 158);
+        }
+        p{
+            text-align: center;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        a{
+            text-decoration: none;
+            color: black;
+            cursor: pointer;
+        }
+
+        @media (max-width: 750px) {
+            .card{
+                width:90%;
+                padding: 10px;
+                margin: 50px auto;
+            }
+            input{
+                width: 93%;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    
+    <div class="container">
+        
+        <div class="card">
+            <h1>Login</h1>
+            <div class="label-group">
+                <input type="text" required placeholder="username">
+            </div>
+            <div class="label-group">
+                <input type="password" required placeholder="password">
+            </div>
+
+            <div class="label-group">
+                <button type="submit">Login</button>
+            </div>
+            <p>Don't have an account? <a href="signup.ejs">sign up here</a></p>
+        </div>
+    </div>
+</body>
+</html>
