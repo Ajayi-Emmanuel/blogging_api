@@ -11,28 +11,39 @@
             padding: 0;
             margin: 0;
         }
+        :root{
+            --full-width: 100%;
+            --half-width: 50%;
+            --margin-auto: 0 auto;
+            --color: steelblue;
+            --medium-padding: 10px;
+            --small-padding: 7px;
+            --border-radius: 5px;
+            --font-size: 1.3em;
+            --white: white;
+        }
         .container{
-            max-width: 100%;
+            max-width: var(--full-width);
             width: 1200px;
-            margin: 0 auto;
+            margin: var(--margin-auto);
         }
         .card{
-            width: 50%;
+            width: var(--half-width);
             margin: 100px auto;
             padding: 10px 40px;
         }
         h1{
             text-align: center;
-            color: steelblue;
+            color: var(--color);
         }
         .label-group{
-            width: 100%;
+            width: var(--full-width);
             margin: 20px auto;
         }
 
         input{
-            padding: 10px;
-            border-radius: 5px;
+            padding: var(--medium-padding);
+            border-radius: var(--border-radius);
             width: 95.5%;
         }
         input:focus{
@@ -42,16 +53,16 @@
             color: lightgrey;
             font-family: cursive;
             text-align: center;
-            font-size: 15px;
+            font-size: var(--font-size);
         }
         button{
-            width: 100%;
-            border-radius: 5px;
-            padding: 7px;
-            background-color: steelblue;
-            color: white;
+            width: var(--full-width);
+            border-radius: var(--border-radius);
+            padding: var(--small-padding);
+            background-color: var(--color);
+            color: var(--white);
             font-family: cursive;
-            font-size: 16px;
+            font-size: var(--font-size);
             border: none;
             transition: .5s;
             
@@ -73,7 +84,7 @@
         @media (max-width: 750px) {
             .card{
                 width:90%;
-                padding: 10px;
+                padding: var(--medium-padding);
                 margin: 50px auto;
             }
             input{

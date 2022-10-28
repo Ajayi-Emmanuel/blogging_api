@@ -21,7 +21,6 @@ app.get('/login', (req, res) => {
 })
 
 app.get('/signup', (req, res) => {
-    // res.send("You have registered successfully")
     res.render('signup')
 })
 
