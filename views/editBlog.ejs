@@ -61,16 +61,16 @@
     </nav>
 
     <div class="container">
-        <form action="/compose" method="post">
+        <form action="/blog/edit/<%= blog._id %>" method="post">
 
-            <h1>Create Your Post</h1>
-            <input type="text" name="title" placeholder= "Enter Title" class="form-control">
+            <h1>Edit Post</h1>
+            <input type="text" value="<%= blog.title %>" name="title" placeholder= "Enter Title" class="form-control">
 
-            <textarea name="description" cols="30" rows="5" class="form-control" placeholder="Enter Description...."></textarea>
+            <textarea name="description" value="" cols="30" rows="5" class="form-control" placeholder="Enter Description...."><%= blog.description %></textarea>
 
-            <textarea name="body" cols="30" rows="20" class="form-control" placeholder="Enter Content...."></textarea>
+            <textarea name="body" value="" cols="30" rows="20" class="form-control" placeholder="Enter Content...."><%= blog.body %></textarea>
 
-            <button type="submit" class="btn">Compose</button>
+            <button type="submit" class="btn">Save Changes</button>
         </form>
     </div>
 </body>

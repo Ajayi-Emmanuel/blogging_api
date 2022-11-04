@@ -39,6 +39,12 @@
             border: none;
 
         }
+        .container{
+            width: 1000px;
+            max-width: 100%;
+            border: 1px solid rgb(115, 113, 113);
+            margin: 20px auto;
+        }
 </style>
 <body>
     <nav>
@@ -49,7 +55,7 @@
     <div class="container">
         <p>published at: <%= blog.timeStamp.createdAt %></p>
         <h2><%= blog.title %></h2>
-        <p><%= blog.content %></p>
+        <p><%= blog.body %></p>
     </div>
 </body>
 </html>
