@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog</title>
+
+    <style>
+        body{
+            padding: 0;
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        :root{
+            --small-padding: 5px;
+            --medium-padding: 10px;
+            --margin-top: 10px;
+            --border-radius: 5px;
+        }
+        nav{
+            background-color: rgb(28, 28, 55);
+            padding: var(--medium-padding);
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+        }
+        header a{
+            text-decoration: none;
+            color: white;
+            font-size: 25px;
+            font-weight: bold;
+        }
+        .container{
+            /* border: 1px solid black; */
+            width: 1000px;
+            max-width: 100%;
+            margin: 0 auto;
+            margin-top: var(--margin-top);
+        }
+        .form-control{
+            display: flex;
+            flex-direction: row;
+            width: 60%;
+            margin-top: 20px;
+            padding: 15px;
+        }
+        .btn{
+            margin-top: 20px;
+            padding: 10px;
+            background-color: rgb(28, 28, 55);
+            color: white;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <header>
+            <a href="">My Blogg</a>
+        </header>
+    </nav>
+
+    <div class="container">
+        <form action="/compose" method="post">
+
+            <h1>Create Your Post</h1>
+            <input type="text" name="title" placeholder= "Enter Title" class="form-control">
+
+            <textarea name="description" cols="30" rows="5" class="form-control" placeholder="Enter Description...."></textarea>
+
+            <textarea name="body" cols="30" rows="20" class="form-control" placeholder="Enter Content...."></textarea>
+
+            <button type="submit" class="btn">Compose</button>
+        </form>
+    </div>
+</body>
+</html>

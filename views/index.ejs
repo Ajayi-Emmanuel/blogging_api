@@ -18,50 +18,68 @@
             --margin-top: 10px;
             --border-radius: 5px;
         }
-        nav{
-            border: 1px solid red;
-            padding: var(--medium-padding);
-            display: grid;
-            grid-template-columns: 1fr 2fr;
+        .container{
+            width: 1000px;
+            max-width: 100%;
+            margin: 30px auto;
         }
-        header a{
+        .card{
+            border: 1px solid rgb(169, 162, 162);
+            width: 800px;
+            max-width: 100%;
+            margin: 10px auto;
+            /* box-shadow: 1px 1px 8px 2px rgb(216, 212, 212); */
+            border-radius: 5px;
+        }
+        nav{
+            background-color: rgb(28, 28, 55);
+            padding: var(--medium-padding);
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+        header{
             text-decoration: none;
-            color: black;
+            color: white;
             font-size: 25px;
             font-weight: bold;
         }
-        .nav-options{
-            display: flex;
-            flex-direction: row;
-            justify-content: space-evenly;
-        }
-       .nav-options a{
-            text-decoration: none;
-            list-style-type: none;
-            color: black;
-            margin-top: var(--margin-top);
-        }
-
-        .nav-options button{
-            padding: var(--medium-padding);
-            background-color: rgb(55, 209, 55);
-            color: white;
+        nav button{
+            width: 70px;
+            padding: 10px;
+            background-color: white;
             border: none;
-            border-radius: var(--border-radius);
-            
+
+        }
+        .card a{
+            margin-bottom: 10px;
         }
 
     </style>
 </head>
 <body>
     <nav>
-        <header><a href="">My Blogg</a></header>
-        <div class="nav-options">
-            <a href=""><li>Test 1</li></a>
-            <a href=""><li>Test 2</li></a>
-            <a href=""><li>Test 2</li></a>
-            <button>Create</button>
-        </div>
+        <header><a href="/"> Blogg</a></header>
+        <a href="/compose" >Create</a>
     </nav>
+
+    <div class="container">
+
+        
+        <% blogs.forEach(blog => { %>
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-muted"><p>published at: <%= blog.timeStamp.createdAt  %>  </p></div>
+                    <div class="card-title"><h5><%= blog.title  %>  </h5></div>
+                    <div class="card-text"><%= blog.description %></div>
+                    <a href = " /blog/<%= blog._id %> ">Read More...</a>
+                </div>
+    
+            </div>
+        <% }) %>
+    </div>
+
+    
+
 </body>
-</html>
+</html> 
