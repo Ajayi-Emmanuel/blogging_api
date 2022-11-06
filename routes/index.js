@@ -1,16 +1,7 @@
 const homeRoute = require("express").Router(); 
-const articleModel = require("../models/articleModel")
+const indexController = require("../controllers/index")
 
-
-homeRoute.get("/:page", async (req, res)=> {
-
-    const resPerPage = 9; // results per page
-    const page = req.params.page || 1;
-
-    
-    const allBlogs = await articleModel.find();
-    res.render("index", {blogs: allBlogs})
-})
+homeRoute.get("/", indexController.get_all_blogs)
 
 homeRoute.get('/signup', (req, res) => {
     res.render('signup.ejs')
@@ -20,5 +11,7 @@ homeRoute.get('/signup', (req, res) => {
 homeRoute.get('/login', (req, res) => {
     res.render('login.ejs')
 })
+
+homeRoute.post("/signup")
 
 module.exports = homeRoute;

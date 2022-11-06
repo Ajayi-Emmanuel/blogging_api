@@ -5,9 +5,9 @@ const db = require("./db");
 
 db.connectToDb();
 
-require('./Authentication/auth');
+require('./middleware/check_auth');
 const homeRoute = require('./routes/index')
-const authRouter = require('./routes/auth')
+const authRouter = require('./routes/user')
 const blogRouter = require('./routes/blog')
 const composeRoute = require('./routes/compose');
 
@@ -23,18 +23,18 @@ app.set('view engine', 'ejs')
 app.use('/', homeRoute)
 app.use('/blog', blogRouter)
 app.use('/', authRouter)
-app.use('/', composeRoute)
-// app.use('/', passport.authenticate('jwt', { session: false }), composeRoute)                    
+app.use('/', passport.authenticate('jwt', { session: false, failureRedirect: "/login" }), composeRoute)                    
 
 
 
 
 // Handle errors.
-app.use(function (err, req, res, next) {
-    console.log(err);
-    res.status(err.status || 500);
-    res.json({ error: err.message });
-});
+// app.use(function (err, req, res, next) {
+//     console.log(err);
+//     console.log(req.body)
+//     res.status(err.status || 500);
+//     res.json({ error: err.message });
+// });
 
 
 app.listen(PORT, () => {
