@@ -53,32 +53,32 @@ passport.use(
 //     ) 
 // );
 
-// passport.use(
-//     '/login',
-//     new localStrategy(
-//         {
-//             usernameField: 'email',
-//             passwordField: 'password',
-//             passReqToCallback: true
-//         },
-//         async (req, email, password, done) => {
-//             // try {
-//                 const user = await UserModel.findOne({ email });
+passport.use(
+    '/login',
+    new localStrategy(
+        {
+            usernameField: 'email',
+            passwordField: 'password',
+            passReqToCallback: true
+        },
+        async (req, email, password, done) => {
+            try {
+                const user = await UserModel.findOne({ email });
 
-//                 if (!user) {
-//                     return done(null, false, { message: 'User not found' });
-//                 }
+                if (!user) {
+                    return done(null, false, { message: 'User not found' });
+                }
 
-//                 const validate = await user.isValidPassword(password);
+                const validate = await user.isValidPassword(password);
 
-//                 if (!validate) {
-//                     return done(null, false, { message: 'Wrong Password' });
-//                 }
+                if (!validate) {
+                    return done(null, false, { message: 'Wrong Password' });
+                }
 
-//                 return done(null, user, { message: 'Logged in Successfully' });
-//             // } catch (error) {
-//             //     return done(error);
-//             // }
-//         }
-//     )
-// );
+                return done(null, user, { message: 'Logged in Successfully' });
+            } catch (error) {
+                return done(error);
+            }
+        }
+    )
+);
