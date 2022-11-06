@@ -27,14 +27,12 @@ app.use('/', passport.authenticate('jwt', { session: false, failureRedirect: "/l
 
 
 
-
-// Handle errors.
-// app.use(function (err, req, res, next) {
-//     console.log(err);
-//     console.log(req.body)
-//     res.status(err.status || 500);
-//     res.json({ error: err.message });
-// });
+app.use(function (err, req, res, next) {
+    console.log(err);
+    console.log(req.body)
+    res.status(err.status || 500);
+    res.json({ error: err.message });
+});
 
 
 app.listen(PORT, () => {
