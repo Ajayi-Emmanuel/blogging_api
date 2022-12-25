@@ -1,15 +1,17 @@
 const express = require("express");
 const passport = require("passport")
 require("dotenv").config();
-const db = require("./db");
+const {connectToDb} = require("./db");
 
-db.connectToDb();
+//Connect to DataBase
+connectToDb();
 
-require('./middleware/check_auth');
-const homeRoute = require('./routes/index')
-const authRouter = require('./routes/user')
-const blogRouter = require('./routes/blog')
-const composeRoute = require('./routes/compose');
+//Connect Routes
+// require('./middleware/check_auth');
+// const homeRoute = require('./routes/index')
+// const authRouter = require('./routes/user')
+// const blogRouter = require('./routes/blog')
+// const composeRoute = require('./routes/compose');
 
 
 const PORT = process.env.PORT;
@@ -20,10 +22,10 @@ app.use(express.static("public"));
 
 app.use(express.json())
 app.set('view engine', 'ejs')
-app.use('/', homeRoute)
-app.use('/blog', blogRouter)
-app.use('/', authRouter)
-app.use('/', passport.authenticate('jwt', { session: false, failureRedirect: "/login" }), composeRoute)                    
+// app.use('/', homeRoute)
+// app.use('/blog', blogRouter)
+// app.use('/', authRouter)
+// app.use('/', passport.authenticate('jwt', { session: false, failureRedirect: "/login" }), composeRoute)                    
 
 
 
