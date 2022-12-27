@@ -12,7 +12,7 @@ const PORT = process.env.PORT;
 
 //Connect Routes
 // require('./middleware/check_auth');
-// const homeRoute = require('./routes/index')
+const homeRoute = require('./routes/index')
 const authRouter = require('./routes/user')
 // const blogRouter = require('./routes/blog')
 // const composeRoute = require('./routes/compose');
@@ -23,7 +23,7 @@ app.use(express.static("public"));
 
 app.use(express.json())
 app.set('view engine', 'ejs')
-// app.use('/blog', homeRoute)
+app.use('/blog', homeRoute)
 // app.use('/blog', blogRouter)
 app.use('/blog', authRouter)
 // app.use('/', passport.authenticate('jwt', { session: false, failureRedirect: "/login" }), composeRoute)                    

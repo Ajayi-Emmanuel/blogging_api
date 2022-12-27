@@ -46,7 +46,7 @@ exports.createUser = async (req, res) => {
         username,
         email, 
         password
-    }).then(() => {
+    }).then((user) => {
         res.json({
             message: "User created",
             user
