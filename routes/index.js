@@ -8,10 +8,8 @@
 // })
 
 
-// homeRoute.get('/login', (req, res) => {
+// homeRoute.get('/auth/login', (req, res) => {
 //     res.render('login.ejs')
 // })
-
-// homeRoute.post("/signup")
 
 // module.exports = homeRoute;

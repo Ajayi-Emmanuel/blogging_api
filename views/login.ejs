@@ -98,22 +98,45 @@
     
     <div class="container">
         
-        <form action="/login" method="post">
+        <form method="post" id="login-form">
             <div class="card">
                 <h1>Login</h1>
                 <div class="label-group">
-                    <input type="text" required placeholder="username">
+                    <input type="text" id="username" required placeholder="username">
                 </div>
                 <div class="label-group">
-                    <input type="password" required placeholder="password">
+                    <input type="password" id= "password" required placeholder="password">
                 </div>
     
                 <div class="label-group">
                     <button type="submit">Login</button>
                 </div>
-                <p>Don't have an account? <a href="/signup">sign up here</a></p>
+                <p>Already have an account? <a href="/login">login up here</a></p>
             </div>
         </form>
+
+        <script>
+            const form = document.getElementById('login-form')
+            form.addEventListener('submit', LoginUser)
+
+            async function LoginUser(event){
+                event.preventDefault()
+                const username = document.getElementById('username').value
+                const password = document.getElementById('password').value
+
+                const result = await fetch('blog/auth/login', {
+                    method:"POST",
+                    headers: {
+                        'Content-Type': "application/json"
+                    },
+                    body: JSON.stringify({
+                        username,
+                        password
+                    })
+                })
+
+            }
+        </script>
         
     </div>
 </body>
