@@ -1,16 +1,16 @@
-// const blogRouter = require("express").Router();
-// // const articleModel = require("../models/articleModel")
+const blogRouter = require("express").Router();
 
-// const blogController = require("../controllers/blog")
+const blogController = require("../controllers/blog")
 
 // blogRouter.get('/:id', blogController.view_blog)
 
-// .get('/delete/:id', blogController.delete_blog)
+// blogRouter.get('/delete/:id', blogController.delete_blog)
 
-// .get('/edit/:id', blogController.get_blog_to_update)
+// blogRouter.get('/edit/:id', blogController.get_blog_to_update)
 
-// .post('/edit/:id', blogController.edit_Blog)
+// blogRouter.post('/edit/:id', blogController.edit_Blog)
 
-// .post("/compose", blogController.createBlog)
+blogRouter.post("/compose", blogController.createBlog)
+blogRouter.get("/getall", blogController.get_all_blogs)
 
-// module.exports = blogRouter
+module.exports = blogRouter

@@ -2,6 +2,7 @@ const express = require("express");
 // const passport = require("passport")
 require("dotenv").config();
 const {connectToDb} = require("./db");
+const cookieParser = require("cookie-parser")
 
 //Connect to DataBase
 connectToDb();
@@ -11,22 +12,22 @@ const PORT = process.env.PORT;
 
 
 //Connect Routes
-// require('./middleware/check_auth');
+const {verifyToken} = require('./middleware/check_auth');
 const homeRoute = require('./routes/index')
 const authRouter = require('./routes/user')
-// const blogRouter = require('./routes/blog')
+const blogRouter = require('./routes/blog')
 // const composeRoute = require('./routes/compose');
 
 
 app.use(express.urlencoded({extended: true}))
+app.use(cookieParser());
 app.use(express.static("public"));
 
 app.use(express.json())
 app.set('view engine', 'ejs')
 app.use('/blog', homeRoute)
-// app.use('/blog', blogRouter)
-app.use('/blog', authRouter)
-// app.use('/', passport.authenticate('jwt', { session: false, failureRedirect: "/login" }), composeRoute)                    
+app.use('/blogapi', authRouter)   
+app.use('/blogapi/blog', verifyToken,  blogRouter)                
 
 
 

@@ -1,22 +1,30 @@
-// const articleModel = require("../models/articleModel")
 
-// exports.createBlog = async (req, res) => {
-//     const {title, description, body} = req.body;
+const articleModel = require("../models/articleModel")
 
-//     if(!title || !body){
-//         return res.send("Enter details completely")
-//     }
+exports.get_all_blogs = async (req, res)=> {
 
-//     const blog = await articleModel.create({
-//         title,
-//         description,
-//         body,
-//         state: "published",
-//         timeStamps: Date.now()
-//     })
-//     return res.redirect('/')
+    const allBlogs = await articleModel.find()
+    res.send(allBlogs)
+
+}
+
+exports.createBlog = async (req, res) => {
+    const {title, description, body, author} = req.body;
+
+    if(!title || !body){
+        return res.send("Enter details completely")
+    }
+
+    const blog = await articleModel.create({
+        title,
+        description,
+        body,
+        author  
+    })
+    // return res.redirect('/')
+    return res.send(blog)
     
-// }
+}
 // exports.view_blog = async (req, res) => {
 
 //     const {id} = req.params;

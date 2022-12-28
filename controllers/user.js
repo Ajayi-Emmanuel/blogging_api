@@ -1,8 +1,10 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt')
+const cookie = require("cookie-parser")
 const userModel = require("../models/userModel");
-const articleModel = require("../models/articleModel")
 require('dotenv').config();
+
+// user.use(cookieParser())
 
 JWT_SECRET = process.env.JWT_SECRET
 
@@ -90,15 +92,26 @@ exports.user_login = async (req, res) => {
     }
     if(await bcrypt.compare(password, user.password)){
 
+        // const body = {}
         const token = jwt.sign(
             {
-                id: user._id, 
+                id: user._id,
                 username: user.username
             },
-            JWT_SECRET
+            JWT_SECRET,
+            {
+                expiresIn: 60*60
+            }
         )
-        const allBlogs = await articleModel.find()
-        return res.json(allBlogs).status(200)
+        res.cookie("user-token", token, 
+        {
+            maxAge: 60*60*1000,
+            httpOnly: true
+        })
+        
+
+        return res.send("Logged-in")
+    
         
     }else{
         return res.json({

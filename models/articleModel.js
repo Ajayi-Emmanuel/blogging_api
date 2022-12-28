@@ -6,8 +6,7 @@ const ObjectId = Schema.ObjectId;
 const BlogSchema = new Schema({
     title: {
         type: String,
-        required: true,
-        unique: true,
+        required: true
     },
     description: {
         type: String,
@@ -17,14 +16,14 @@ const BlogSchema = new Schema({
         required: true
     },
     author: {
-        type: String,
+        type: String
     },
     state: {
         type: String,
         default: 'draft', 
         enum: ['draft','published']
     },
-    readCount: {
+    readcount: {
         type: Number,
         default: 0
     },
@@ -32,9 +31,8 @@ const BlogSchema = new Schema({
     tags: [{
         type: 'String'
     }],
-    timeStamp: {
-        createdAt: {type: Date, default: Date.now()},
-        updatedAt: {type: Date, default: Date.now()}
+    timestamp: {
+        createdAt: {type: Date, default: Date.now()}
     }
 })
 
