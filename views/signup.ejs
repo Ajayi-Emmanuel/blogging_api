@@ -98,58 +98,31 @@
     
     <div class="container">
         
-        <form method="post" id="signup-form" class="card">
+        <form action="/blogapi/signup" method="post" id="signup-form" class="card">
             <h1>Sign Up</h1>
             <div class="label-group">
-                <input type="text" id="firstname" required placeholder="First Name">
+                <input type="text" name="firstname" required placeholder="First Name">
             </div>
             <div class="label-group">
-                <input type="text" id="lastname" required placeholder="Last Name">
+                <input type="text" name="lastname" required placeholder="Last Name">
             </div>
             <div class="label-group">
-                <input type="text" id="username" name="username" required placeholder="Username">
+                <input type="text" name="username" name="username" required placeholder="Username">
             </div>
             <div class="label-group">
-                <input type="text" id="email" name="email" required placeholder="email">
+                <input type="text"  name="email" required placeholder="email">
             </div>
             <div class="label-group">
-                <input type="password" id="password" name="password" required placeholder="password">
+                <input type="password"  name="password" required placeholder="password">
             </div>
 
             <div class="label-group">
                 <button type="submit" value="signup">Sign Up</button>
             </div>
-            <p>Don't have an account? <a href="/signup">Register Here</a></p>
+            <p>Already have an account? <a href="/blogapi/auth/login">Login Here</a></p>
         </form>
 
-        <script>
-            const form = document.getElementById('signup-form')
-            form.addEventListener('submit', SignupUser)
-
-            async function signupUser(event){
-                event.preventDefault()
-                const firstname = document.getElementById('firstname').value
-                const lastname = document.getElementById('lastname').value
-                const username = document.getElementById('username').value
-                const email = document.getElementById('email').value
-                const password = document.getElementById('password').value
-
-                const result = await fetch('/blog/signup', {
-                    method:"POST",
-                    headers: {
-                        'Content-Type': "application/json"
-                    },
-                    body: JSON.stringify({
-                        firstname,
-                        lastname,
-                        username,
-                        email,
-                        password
-                    })
-                })
-
-            }
-        </script>
+       
     </div>
 </body>
 </html>

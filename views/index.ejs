@@ -38,6 +38,10 @@
             flex-direction: row;
             justify-content: space-between;
         }
+        nav a{
+            color: white;
+            text-decoration: none;
+        }
         header{
             text-decoration: none;
             color: white;
@@ -59,29 +63,15 @@
 </head>
 <body>
     <nav>
-        <header><a href="/"> Blogg</a></header>
-        <a href="/compose" >Create</a>
+        <header><a href="/blog/"> Blogg</a></header>
+        <a href="/blogapi/auth/login" >Login</a>
+        <a href="/blogapi/signup" >SignUp</a>
+        <a href="/blogapi/blog/compose" >Create</a>
     </nav>
 
-    <div class="container">
-
-        
-        <% blogs.forEach(blog => { %>
-            <div class="card">
-                <div class="card-body">
-                    <div class="card-muted"><p>published at: <%= blog.timeStamp.createdAt  %>  </p></div>
-                    <div class="card-title"><h5><%= blog.title  %>  </h5></div>
-                    <div class="card-text"><%= blog.description %></div>
-                    <a href = " /blog/<%= blog._id %> ">Read More...</a>
-                    <a href = " /blog/delete/<%= blog._id %> ">Delete</a>
-                    <a href = " /blog/edit/<%= blog._id %> ">Edit</a>
-                </div>
     
-            </div>
-        <% }) %>
-    </div>
 
-    
+     
 
 </body>
 </html> 

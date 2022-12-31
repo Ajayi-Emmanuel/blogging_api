@@ -56,12 +56,12 @@
 <body>
     <nav>
         <header>
-            <a href="/">My Blogg</a>
+            <a href="/blog/">My Blogg</a>
         </header>
     </nav>
 
     <div class="container">
-        <form action="/blog/edit/<%= blog._id %>" method="post">
+        <form action="/blogapi/blog/edit/<%= blog._id %>" method="post">
 
             <h1>Edit Post</h1>
             <input type="text" value="<%= blog.title %>" name="title" placeholder= "Enter Title" class="form-control">

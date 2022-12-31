@@ -1,10 +1,8 @@
-const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt')
-const cookie = require("cookie-parser")
+const {createToken} =require("../middleware/check_auth")
 const userModel = require("../models/userModel");
 require('dotenv').config();
 
-// user.use(cookieParser())
 
 JWT_SECRET = process.env.JWT_SECRET
 
@@ -49,10 +47,7 @@ exports.createUser = async (req, res) => {
         email, 
         password
     }).then((user) => {
-        res.json({
-            message: "User created",
-            user
-        }).status(200)
+        res.status(200).redirect("/blogapi/auth/login")
     }).catch((err) => {
         if (err.code === 11000) {
             res.json({
@@ -67,6 +62,7 @@ exports.createUser = async (req, res) => {
 }
 
 exports.user_login = async (req, res) => {
+    
     const {username, password} = req.body
 
     if(!username || username === "" || typeof username !== 'string'){
@@ -92,25 +88,14 @@ exports.user_login = async (req, res) => {
     }
     if(await bcrypt.compare(password, user.password)){
 
-        // const body = {}
-        const token = jwt.sign(
-            {
-                id: user._id,
-                username: user.username
-            },
-            JWT_SECRET,
-            {
-                expiresIn: 60*60
-            }
-        )
-        res.cookie("user-token", token, 
+        const accessToken = createToken(user)
+
+        res.cookie("user-token", accessToken, 
         {
             maxAge: 60*60*1000,
             httpOnly: true
         })
-        
-
-        return res.send("Logged-in")
+        res.redirect("/blog/")
     
         
     }else{
