@@ -63,12 +63,12 @@
 </head>
 <body>
     <nav>
-        <header><a href=""> Blogg</a></header>
-        <!-- <a href="/blogapi/auth/login" >Login</a>
-        <a href="/blogapi/signup" >SignUp</a> -->
+        <header><a href="/blogapi/blog/account"> Blogg</a></header>
+        <a href="/blogapi/blog/search" >Search</a>
         <a href="/blogapi/blog/compose" >Create</a>
+        <a href="/blogapi/blog/logout" >LogOut</a>
     </nav>
-
+ 
     
     <% blogs.forEach(blog => {  %>
         <div class="container">
@@ -78,6 +78,8 @@
                 <p>published at: <%= blog.timestamp.createdAt %></p>
 
                 <a href="/blog/<%= blog._id %>">Read More</a>
+                <a href="/blogapi/blog/edit/<%= blog._id %>">Edit</a>
+                <a href="/blogapi/blog/delete/<%= blog._id %>">Delete</a>
             </div>
     
         </div> 

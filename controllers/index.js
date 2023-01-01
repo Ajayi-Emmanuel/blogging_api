@@ -12,7 +12,7 @@ exports.get_all_blogs = async (req, res)=> {
     res.status(200).render("index.ejs", {blogs: allBlogs})
 
 
-} 
+}  
 
 exports.view_blog = async (req, res) => {
 

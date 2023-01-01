@@ -86,20 +86,21 @@ exports.user_login = async (req, res) => {
             'error-message': "User not Found"
         }).status(400)
     }
-    if(await !bcrypt.compare(password, user.password)){
+    if(await bcrypt.compare(password, user.password)){
+
+        const accessToken = createToken(user)
+
+        res.cookie("user-token", accessToken, 
+        {
+            maxAge: 60*60*1000,
+            httpOnly: true
+        })
+        res.status(200).redirect('/blogapi/blog/account')
+    }else{
         return res.json({
             status: "error",
             'error-message': "Incorrect Username/Password"
         }).status(304)
-
-    
     }
-    const accessToken = createToken(user)
-
-    res.cookie("user-token", accessToken, 
-    {
-        maxAge: 60*60*1000,
-        httpOnly: true
-    })
-    res.redirect('/blogapi/blog/account')
+    
 }

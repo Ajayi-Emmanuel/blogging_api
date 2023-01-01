@@ -4,8 +4,8 @@ const articleModel = require("../models/articleModel")
 exports.get_all_blogs = async (req, res)=> {
 
     const allBlogs = await articleModel.find()
-    res.render("index.ejs")
-
+    res.render("signed_in_account.ejs", {blogs: allBlogs})
+                            
 }
 
 exports.createBlog = async (req, res) => {
@@ -43,7 +43,7 @@ exports.edit_Blog = (req, res) => {
 
     .then((updatedBlog) => {
         console.log("Update Successfully")
-        res.redirect("/blog/") 
+        res.status(200).redirect("/blogapi/blog/account") 
     }).catch((err) => {
             console.log(err)
             console.log("Error in updating database")
@@ -56,6 +56,6 @@ exports.delete_blog = async (req, res) => {
 
     const deleteBlog = await articleModel.deleteOne({_id: id});
 
-    return res.redirect('/blog/')
+    return res.redirect('/blogapi/blog/account')
 }
 

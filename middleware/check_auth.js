@@ -10,7 +10,7 @@ const createToken =  (user)=> {
         }, 
         process.env.JWT_SECRET)
 
-        return accessToken
+    return accessToken
 }
 
 const verifyToken = (req, res, next) => {
