@@ -5,7 +5,7 @@ const {connectToDb} = require("./db");
 const cookieParser = require("cookie-parser")
 
 //Connect to DataBase
-// connectToDb();
+connectToDb();
 
 const app = express();
 const PORT = process.env.PORT;
@@ -26,7 +26,8 @@ app.use(express.json())
 app.set('view engine', 'ejs')
 app.use('/blog', homeRoute)
 app.use('/blogapi', authRouter)   
-app.use('/blogapi/blog', verifyToken,  blogRouter)                
+app.use('/blogapi/blog', verifyToken,  blogRouter)    
+            
 
 
 
@@ -35,7 +36,7 @@ app.use(function (err, req, res, next) {
     console.log(req.body)
     res.status(err.status || 500);
     res.json({ error: err.message });
-});
+}); 
 
 
 app.listen(PORT, () => {

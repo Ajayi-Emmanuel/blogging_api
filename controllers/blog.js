@@ -25,14 +25,7 @@ exports.createBlog = async (req, res) => {
     // return res.send(blog)
     
 }
-exports.view_blog = async (req, res) => {
 
-    const {id} = req.params;
-    const getBlog = await articleModel.findOne({_id: id});
-
-    res.render("specificBlog", {blog: getBlog})
-
-}
 
 exports.get_blog_to_update = async (req, res) => {
     const {id} = req.params;

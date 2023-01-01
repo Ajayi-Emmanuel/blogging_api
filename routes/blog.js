@@ -6,8 +6,9 @@ blogRouter.get("/compose", (req, res)=> {
     res.render("composeBlog")
 })
 
-blogRouter.get('/:id', blogController.view_blog)
-
+blogRouter.get("/account", (req, res) => {
+    res.render("signed_in_account")
+})
 blogRouter.get('/delete/:id', blogController.delete_blog)
 
 blogRouter.get('/edit/:id', blogController.get_blog_to_update)

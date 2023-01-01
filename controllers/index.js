@@ -13,3 +13,12 @@ exports.get_all_blogs = async (req, res)=> {
 
 
 } 
+
+exports.view_blog = async (req, res) => {
+
+    const {id} = req.params;
+    const getBlog = await articleModel.findOne({_id: id});
+
+    res.render("specificBlog", {blog: getBlog})
+
+}
