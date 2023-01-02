@@ -15,7 +15,7 @@
             --full-width: 100%;
             --half-width: 50%;
             --margin-auto: 0 auto;
-            --color: steelblue;
+            --color: rgb(28, 28, 55);;
             --medium-padding: 10px;
             --small-padding: 7px;
             --border-radius: 5px;
@@ -28,8 +28,8 @@
             margin: var(--margin-auto);
         }
         .card{
-            width: var(--half-width);
-            margin: var(--margin-auto);
+            width: 30%;
+            margin: 50px auto;
             padding: 10px 40px;
         }
         h1{
@@ -56,7 +56,7 @@
             font-size: var(--font-size);
         }
         button{
-            width: var(--full-width);
+            width: var(--half-width);
             border-radius: var(--border-radius);
             padding: var(--small-padding);
             background-color: var(--color);
@@ -65,11 +65,15 @@
             font-size: var(--font-size);
             border: none;
             transition: .5s;
+            margin-left: 25%;
             
+        }
+        .btn{
+            float: center;
         }
         button:hover{
             cursor: pointer;
-            background-color: rgb(57, 113, 158);
+            background-color: rgb(19, 19, 34);;
         }
         p{
             text-align: center;
@@ -77,8 +81,14 @@
         }
         a{
             text-decoration: none;
-            color: black;
+            color: red;
             cursor: pointer;
+        }
+        .error{
+            background-color: rgb(243, 193, 193);
+            border-radius: var(--border-radius);
+            color: white;
+            font-size: 20px;
         }
 
         @media (max-width: 750px) {
@@ -99,6 +109,14 @@
     <div class="container">
         
         <form action="/blogapi/signup" method="post" id="signup-form" class="card">
+
+            <div class="error">
+                <% if(typeof error !== "undefined"){ %>
+                    <p><%= error %></p>
+                <% } %>
+                
+            </div>
+
             <h1>Sign Up</h1>
             <div class="label-group">
                 <input type="text" name="firstname" required placeholder="First Name">
@@ -112,7 +130,7 @@
             <div class="label-group">
                 <input type="text"  name="email" required placeholder="email">
             </div>
-            <div class="label-group">
+            <div class="label-group btn">
                 <input type="password"  name="password" required placeholder="password">
             </div>
 

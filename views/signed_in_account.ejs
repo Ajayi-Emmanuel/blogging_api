@@ -65,11 +65,11 @@
     <nav>
         <header><a href="/blogapi/blog/account"> Blogg</a></header>
         <a href="/blogapi/blog/search" >Search</a>
+        <a href="/blogapi/blog/profile" >Profile</a>
         <a href="/blogapi/blog/compose" >Create</a>
-        <a href="/blogapi/blog/logout" >LogOut</a>
     </nav>
  
-    
+    <h1>Welcome <%= users.username %></h1>
     <% blogs.forEach(blog => {  %>
         <div class="container">
             <div class="card">

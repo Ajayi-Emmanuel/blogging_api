@@ -10,34 +10,29 @@ exports.createUser = async (req, res) => {
     const {firstname, lastname, username, email, password} = req.body;
 
     if(!username || username === "" || typeof username !== 'string'){
-        return res.json({
-            status: "error",
-            'error-message': "Invalid Username"
-        }).status(400)
+        res.render('signup.ejs', {
+            error: "Invalid Username"
+        }).status(403)
     }
     if(!firstname || firstname === "" || typeof firstname !== 'string'){
-        return res.json({
-            status: "error",
-            'error-message': "InValid firstname"
-        }).status(400)
+        res.render('signup.ejs', {
+            error: "Invalid Firstname"
+        }).status(403)
     }
     if(!lastname || lastname === "" || typeof lastname !== 'string'){
-        return res.json({
-            status: "error",
-            'error-message': "Invalid lastname"
-        }).status(400)
+        res.render('signup.ejs', {
+            error: "Invalid Lastname"
+        }).status(403)
     }
     if(!email || email === "" || typeof email !== 'string'){
-        return res.json({
-            status: "error",
-            'error-message': "Invalid email"
-        }).status(400)
+        res.render('signup.ejs', {
+            error: "Invalid email"
+        }).status(403)
     }
     if(!password || password === "" || typeof password !== 'string'){
-        return res.json({
-            status: "error",
-            'error-message': "Invalid Username"
-        }).status(400)
+        res.render('signup.ejs', {
+            error: "Invalid Password"
+        }).status(403)
     }
 
     const user = await userModel.create({
@@ -50,13 +45,15 @@ exports.createUser = async (req, res) => {
         res.status(200).redirect("/blogapi/auth/login")
     }).catch((err) => {
         if (err.code === 11000) {
-            res.json({
-                status: "error",
-                'error message': "Duplicate Username or Email"
+            res.status(403)
+            res.render('signup.ejs', {
+                error: "Duplicate Username or Mail"
             })
-            res.status(400)
+        }else{
+            res.render('signup.ejs', {
+                error: err.code
+            })
         }
-        throw err
     })
     
 }
@@ -66,41 +63,40 @@ exports.user_login = async (req, res) => {
     const {username, password} = req.body
 
     if(!username || username === "" || typeof username !== 'string'){
-        return res.json({
-            status: "error",
-            'error-message': "Invalid Username"
-        }).status(400)
+        res.render('login.ejs', {
+            error: "Invalid Username"
+        })
     }
 
     if(!password || password === "" || typeof password !== 'string'){
-        return res.json({
-            status: "error",
-            'error-message': "Invalid password"
-        }).status(400)
+        res.render('login.ejs', {
+            error: "Invalid Password"
+        })
     }
 
     const user = await userModel.findOne({username}).lean()
     if(!user){
-        return res.json({
-            status: "error",
-            'error-message': "User not Found"
-        }).status(400)
-    }
-    if(await bcrypt.compare(password, user.password)){
-
-        const accessToken = createToken(user)
-
-        res.cookie("user-token", accessToken, 
-        {
-            maxAge: 60*60*1000,
-            httpOnly: true
+        res.status(403)
+        res.render('login.ejs', {
+            error: "User not Found"
         })
-        res.status(200).redirect('/blogapi/blog/account')
     }else{
-        return res.json({
-            status: "error",
-            'error-message': "Incorrect Username/Password"
-        }).status(304)
+        if(await bcrypt.compare(password, user.password)){
+        
+            const accessToken = createToken(user)
+            res.cookie("user-token", accessToken, 
+            {
+                maxAge: 60*60*1000,
+                httpOnly: true
+            })
+            res.redirect(301, "/blog/")
+        }else{
+            res.status(403)
+            res.render('login.ejs', {
+                error: "Incorrect Username/Password"
+            })
+        }
     }
+    
     
 }
