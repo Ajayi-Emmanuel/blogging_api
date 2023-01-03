@@ -1,7 +1,7 @@
 const articleModel = require("../models/articleModel")
 
 exports.get_all_blogs = async (req, res)=> {
-    
+    const loggedIn = false
     
     // const {page = 1, limit = 20} = req.query;
 
@@ -9,7 +9,10 @@ exports.get_all_blogs = async (req, res)=> {
     // res.render("index.ejs")
     // .limit(limit * 1)
     // .skip((page - 1) * limit);
-    res.status(200).render("index.ejs", {blogs: allBlogs})
+    res.status(200).render("index.ejs", {
+        loggedIn,
+        blogs: allBlogs
+    })
 
 
 }  

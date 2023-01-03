@@ -86,6 +86,21 @@
             font-size: 12px;
         }
 
+        .welcome{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            padding: var(--medium-padding);
+        }
+        .welcome a{
+            /* border: 1px solid green; */
+            padding: var(--medium-padding);
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            color: white;
+            background-color: rgb(81, 196, 81);
+        }
+
         @media (max-width: 750px) {
             #head{
                 display: flex;
@@ -103,30 +118,27 @@
 <body>
     <nav>
         <header><a href="/blog/"> Blogg</a></header>
-        <div class="right-nav">
-            <a href="/blogapi/auth/login" >Login</a>
-            <a href="/blogapi/signup" >SignUp</a>
-            <a href="/blogapi/blog/compose" >Create</a>
-        </div>
+
+        <% if(!loggedIn){ %>
+            <div class="right-nav">
+                <a href="/blogapi/auth/login" >Login</a>
+                <a href="/blogapi/signup" >SignUp</a>
+                <a href="/blogapi/blog/compose" >Create</a>
+            </div> 
+        <% } %>
+        
         
     </nav>
 
-    <% blogs.forEach(blog => {  %>
-        <div class="container">
-            <div class="card">
-                
-                <p class="title"><%= blog.title %></p>
-                <p class="body"><%= blog.body.slice(0, 99) %>......</p>
-                
-                <div id="head">
-                    <a href="/blog/<%= blog._id %>">Read Post</a>
-                    <p class="time">published at: <%= blog.timestamp.createdAt %></p>
-                </div>
-                
-            </div>
+    <% if(loggedIn){ %>
+        <div class="welcome">
+            <h1>Welcome <%= username %></h1>
+            <p><a href="/blogapi/blog/compose" >Create</a></p>
+        </div>
+        
+    <% } %>
+
     
-        </div> 
-    <%}) %>
     
 
      

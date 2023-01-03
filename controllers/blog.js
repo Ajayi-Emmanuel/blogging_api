@@ -1,14 +1,8 @@
 
 const articleModel = require("../models/articleModel")
 
-exports.get_all_blogs = async (req, res)=> {
-
-    const allBlogs = await articleModel.find()
-    res.render("signed_in_account.ejs", {blogs: allBlogs})
-                            
-}
-
 exports.createBlog = async (req, res) => {
+    const loggedIn = true
     const {title, description, body, author} = req.body;
 
     if(!title || !body){
@@ -22,7 +16,6 @@ exports.createBlog = async (req, res) => {
         author  
     })
     return res.redirect('/blog/')
-    // return res.send(blog)
     
 }
 
