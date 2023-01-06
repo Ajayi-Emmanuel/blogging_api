@@ -117,9 +117,9 @@
 </head>
 <body>
     <nav>
-        <header><a href="/blog/"> Blogg</a></header>
+        <header><a href=""> Blogg</a></header>
 
-        <% if(!loggedIn){ %>
+        <% if(!loggedIn || loggedIn === "undefined"){ %>
             <div class="right-nav">
                 <a href="/blogapi/auth/login" >Login</a>
                 <a href="/blogapi/signup" >SignUp</a>
@@ -132,13 +132,29 @@
 
     <% if(loggedIn){ %>
         <div class="welcome">
-            <h1>Welcome <%= username %></h1>
             <p><a href="/blogapi/blog/compose" >Create</a></p>
         </div>
         
     <% } %>
 
     
+
+    <% blogs.forEach(blog => {  %>
+        <div class="container">
+            <div class="card">
+                
+                <p class="title"><%= blog.title %></p>
+                <p class="body"><%= blog.body.slice(0, 99) %>......</p>
+                
+                <div id="head">
+                    <a href="/blog/<%= blog._id %>">Read Post</a>
+                    <p class="time">published at: <%= blog.timestamp.createdAt %></p>
+                </div>
+                
+            </div>
+    
+        </div> 
+    <% }) %>
     
 
      

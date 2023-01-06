@@ -14,5 +14,7 @@ blogRouter.post('/edit/:id', blogController.edit_Blog)
 
 blogRouter.post("/compose", blogController.createBlog)
 
+blogRouter.get('/getall', blogController.get_all_blogs)
+
 
 module.exports = blogRouter

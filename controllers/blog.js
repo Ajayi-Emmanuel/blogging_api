@@ -1,8 +1,20 @@
 
 const articleModel = require("../models/articleModel")
 
+exports.get_all_blogs = async (req, res)=> {
+
+    loggedIn = req.authenticated
+    const allBlogs = await articleModel.find()
+    return res.render('index.ejs', {
+        loggedIn,
+        blogs: allBlogs
+    })
+
+
+}  
+
 exports.createBlog = async (req, res) => {
-    const loggedIn = true
+    // const loggedIn = true
     const {title, description, body, author} = req.body;
 
     if(!title || !body){

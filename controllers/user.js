@@ -84,21 +84,14 @@ exports.user_login = async (req, res) => {
         if(await bcrypt.compare(password, user.password)){
     
             const accessToken = createToken(user)
-            const loggedIn = true;
+
             res.cookie("user-token", accessToken, 
             {
                 maxAge: 60*60*1000,
                 httpOnly: true
             })
             
-            res.status(200)
-            res.render('index.ejs', {
-                loggedIn,
-                username: user.username,
-                email: user.email,
-                firstname: user.firstname,
-                lastname: user.lastname,
-            })
+            res.redirect("/blogapi/blog/getall")
         }else{
             res.status(403)
             res.render('login.ejs', {
