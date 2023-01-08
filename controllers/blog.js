@@ -27,7 +27,7 @@ exports.createBlog = async (req, res) => {
         body,
         author  
     })
-    return res.redirect('/blog/')
+    return res.redirect('/blogapi/blog/getall')
     
 }
 
@@ -48,7 +48,7 @@ exports.edit_Blog = (req, res) => {
 
     .then((updatedBlog) => {
         console.log("Update Successfully")
-        res.status(200).redirect("/blogapi/blog/account") 
+        res.status(200).redirect("/blogapi/blog/getall") 
     }).catch((err) => {
             console.log(err)
             console.log("Error in updating database")
@@ -61,6 +61,6 @@ exports.delete_blog = async (req, res) => {
 
     const deleteBlog = await articleModel.deleteOne({_id: id});
 
-    return res.redirect('/blogapi/blog/account')
+    return res.redirect('/blogapi/blog/getall')
 }
 
