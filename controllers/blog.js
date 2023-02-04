@@ -1,4 +1,6 @@
 
+const { Cookie } = require("express-session")
+const { userInfo } = require("os")
 const articleModel = require("../models/articleModel")
 
 exports.get_all_blogs = async (req, res)=> {
@@ -25,7 +27,7 @@ exports.createBlog = async (req, res) => {
         title,
         description,
         body,
-        author  
+        state
     })
     return res.redirect('/blogapi/blog/getall')
     

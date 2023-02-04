@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 const ObjectId = Schema.ObjectId;
 
 const BlogSchema = new Schema({
+    ObjectId,
     title: {
         type: String,
         required: true
@@ -16,7 +17,7 @@ const BlogSchema = new Schema({
         required: true
     },
     author: {
-        type: String
+        type: String,
     },
     state: {
         type: String,
@@ -25,7 +26,8 @@ const BlogSchema = new Schema({
     },
     readcount: {
         type: Number,
-        default: 0
+        default: 0,
+        min: 0
     },
     readingTime: String,
     tags: [{
@@ -33,7 +35,7 @@ const BlogSchema = new Schema({
     }],
     timestamp: {
         createdAt: {type: Date, default: Date.now()}
-    }
+    }   
 })
 
 const articleModel = mongoose.model('articles', BlogSchema)

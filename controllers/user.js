@@ -88,7 +88,7 @@ exports.user_login = async (req, res) => {
             res.cookie("user-token", accessToken, 
             {
                 maxAge: 60*60*1000,
-                httpOnly: true
+                httpOnly: true,
             })
             
             res.redirect("/blogapi/blog/getall")
