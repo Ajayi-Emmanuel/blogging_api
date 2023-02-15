@@ -155,6 +155,7 @@
         <input type="text" name="search" class="searchbox">
         <button type="submit" class="btn" >Search</button>
         <% if(loggedIn){ %>
+            <p class="username"><%=username %></p>
             <p><a href="/blogapi/blog/compose" >Create</a></p>
         <% } %>
     </div>
@@ -175,9 +176,11 @@
                         <p class="body"><%= blog.body.slice(0, 99) %>......</p>
                         
                         <div id="head">
-                            <a href="/blog/<%= blog._id %>">Read Post</a>
+                            <a href="/blog/<%= blog._id %>" id="readcount">Read Post</a>
                             <p class="time">published at: <%= blog.timestamp.createdAt %></p>
                         </div>
+                        <p class="reading-time"> <%= blog.readingTime %>mins</p>
+                        <p class="reading-count"> <%= blog.readcount %> Reads</p>
                         
                     </div>
             
@@ -191,6 +194,6 @@
         </article>
     </main>
      
-
+    <script src="counter.js"></script>
 </body>
 </html> 

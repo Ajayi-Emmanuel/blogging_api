@@ -2,34 +2,67 @@
 const { Cookie } = require("express-session")
 const { userInfo } = require("os")
 const articleModel = require("../models/articleModel")
+const {readCounter} = require("./counter");
 
 exports.get_all_blogs = async (req, res)=> {
 
-    loggedIn = req.authenticated
-    const allBlogs = await articleModel.find()
-    return res.render('index.ejs', {
-        loggedIn,
-        blogs: allBlogs
-    })
+    try {
+        // const page = parseInt(req.query.page) -1||0; 
+        // const limit = parseInt(req.query.limit) || 5;
+        // const search = req.query.search || "";
+        // let sort = req.query.sort || "createdAt";
+
+        // let sortBy = {};
+        // if(sort[1]) {
+        //     sortBy[sort[0]] = sort[1];
+        // }else{
+        //     sortBy[sort[0]] = "asc";
+        // }
+        // const blogs = await articleModel.find({title: {$regex: search, $options: "i"}})
+        // .sort(sortBy)
+        // .skip(page * limit)
+        // .limit(limit)
+
+        // const res = {
+        //     error: false,
+        //     total,
+        //     page: page + 1,
+        //     limit,
+        //     blogs
+        // }
+        loggedIn = req.authenticated
+        const allBlogs = await articleModel.find()
+            return res.render('index.ejs', {
+                loggedIn,
+                blogs: allBlogs
+            })
+        // res.status(200).json(res);
+
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({error: "Internal Server Error"})
+    }
+    
 
 
 }  
 
 exports.createBlog = async (req, res) => {
-    // const loggedIn = true
-    const {title, description, body, author} = req.body;
+    const {title, description, body} = req.body;
 
     if(!title || !body){
         return res.send("Enter details completely")
     }
 
+    const readingTime = body.split(" ").length / 200;
+
     const blog = await articleModel.create({
         title,
         description,
         body,
-        state
+        readingTime
     })
-    return res.redirect('/blogapi/blog/getall')
+    // return res.redirect('/blogapi/blog/getall')
     
 }
 

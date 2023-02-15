@@ -1,5 +1,4 @@
 const express = require("express");
-// const passport = require("passport")
 require("dotenv").config();
 const {connectToDb} = require("./db");
 const cookieParser = require("cookie-parser")
