@@ -91,7 +91,6 @@ exports.user_login = async (req, res) => {
                 httpOnly: true,
             })
             req.authenticated = true;
-            req.body= user;
             res.redirect("/blogapi/blog/getall")
         }else{
             res.status(403)

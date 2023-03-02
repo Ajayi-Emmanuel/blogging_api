@@ -21,6 +21,9 @@ exports.view_blog = async (req, res) => {
     const {id} = req.params;
     const getBlog = await articleModel.findOne({_id: id});
 
+    getBlog.readcount++;
+    getBlog.save()
+    
     res.render("specificBlog", {blog: getBlog})
 
 }

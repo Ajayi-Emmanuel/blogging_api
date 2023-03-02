@@ -26,8 +26,8 @@ const BlogSchema = new Schema({
     },
     readcount: {
         type: Number,
-        default: 0,
-        min: 0
+        require: true,
+        default: 0
     },
     readingTime: String,
     tags: [{

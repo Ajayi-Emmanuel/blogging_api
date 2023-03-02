@@ -2,7 +2,7 @@
 const { Cookie } = require("express-session")
 const { userInfo } = require("os")
 const articleModel = require("../models/articleModel")
-const {readCounter} = require("./counter");
+// const {readCounter} = require("./counter");
 
 exports.get_all_blogs = async (req, res)=> {
 
