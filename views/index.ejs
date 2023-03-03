@@ -70,7 +70,6 @@
         #head{
             display: flex;
             justify-content: space-between;
-            /* border: 1px solid black;  */
             height: fit-content;
             margin-top: -10px;
         }
@@ -101,7 +100,6 @@
             display: grid;
             grid-template-columns: 2fr 1fr 0.1fr;
             padding: var(--medium-padding);
-            /* border: 1px solid red; */
             gap: 20px;
 
         }
@@ -154,16 +152,15 @@
     <div class="test">
         <input type="text" name="search" class="searchbox">
         <button type="submit" class="btn" >Search</button>
-        <% if(loggedIn){ %>
-            <p><a href="/blogapi/blog/compose" >Create</a></p>
-        <% } %>
     </div>
     
-        <!-- <div class="welcome">
-            
+        <div class="welcome">
+            <% if(loggedIn){ %>
+                <p>Welcome <%= username %></p>
+                <p><a href="/blogapi/blog/compose" >Create</a></p>
+            <% } %>
         </div>
         
-    -->
 
     <main id="wrapper">
         <section>
@@ -178,8 +175,9 @@
                             <a href="/blog/<%= blog._id %>" id="readcount">Read Post</a>
                             <p class="time">published at: <%= blog.timestamp.createdAt %></p>
                         </div>
-                        <p class="reading-time"> <%= blog.readingTime %>mins</p>
-                        <p class="reading-count"> <%= blog.readcount %> Reads</p>
+                        <p> <%= blog.readingTime %>mins</p>
+                        <p> <%= blog.readcount %> Reads</p>
+                        <p> written by <%= blog.author %></p>
                         
                     </div>
             

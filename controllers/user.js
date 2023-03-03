@@ -81,8 +81,8 @@ exports.user_login = async (req, res) => {
             error: "User not Found"
         })
     }else{
+
         if(await bcrypt.compare(password, user.password)){
-    
             const accessToken = createToken(user)
 
             res.cookie("user-token", accessToken, 
@@ -91,6 +91,7 @@ exports.user_login = async (req, res) => {
                 httpOnly: true,
             })
             req.authenticated = true;
+
             res.redirect("/blogapi/blog/getall")
         }else{
             res.status(403)
@@ -99,7 +100,5 @@ exports.user_login = async (req, res) => {
             })
         }
     }
-    console.log
-    
     
 }

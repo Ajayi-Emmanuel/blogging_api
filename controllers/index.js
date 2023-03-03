@@ -4,10 +4,10 @@ exports.get_all_blogs = async (req, res)=> {
     req.authenticated = false
     const loggedIn = req.authenticated
     
-    // const {page = 1, limit = 20} = req.query;
+    const {page = 1, limit = 10} = req.query;
     const allBlogs = await articleModel.find()
-    // .limit(limit * 1)
-    // .skip((page - 1) * limit);
+    .limit(limit * 1)
+    .skip((page - 1) * limit);
     res.status(200).render("index.ejs", {
         loggedIn,
         blogs: allBlogs

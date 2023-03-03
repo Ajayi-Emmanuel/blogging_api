@@ -14,7 +14,6 @@ const createToken =  (user)=> {
 }
 
 const verifyToken = (req, res, next) => {
-    console.log(req.cookies['user-token'])
     const accessToken = req.cookies['user-token']
     if(!accessToken) 
         return res.status(400).json({
@@ -23,9 +22,9 @@ const verifyToken = (req, res, next) => {
     else{
         try{
             const validToken = verify(accessToken, process.env.JWT_SECRET)
-            console.log(validToken)
             if(validToken){
                 req.authenticated = true
+                req.user = validToken.username;
                 return next()
             }
         }catch(err){
